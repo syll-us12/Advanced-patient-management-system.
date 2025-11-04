@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient Records</h2>
+
+<form action="/add" method="POST" class="patient-form">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <input type="text" name="condition" placeholder="Condition" required>
+    <input type="text" name="height" placeholder="Height (cm)">
+    <input type="text" name="bpr" placeholder="Blood Pressure">
+    <input type="email" name="email" placeholder="Email">
+    <input type="text" name="location" placeholder="Location">
+    <input type="date" name="checkup_date" placeholder="Next Checkup">
+    <button type="submit">Add Patient</button>
+</form>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Condition</th>
+        <th>Email</th>
+        <th>Checkup Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for p in patients %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.age }}</td>
+        <td>{{ p.condition }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.checkup_date }}</td>
+        <td>
+            <a href="{{ url_for('edit_patient', id=p.id) }}">Edit</a> |
+            <a href="{{ url_for('delete_patient', id=p.id) }}">Delete</a> |
+            <a href="{{ url_for('ai_summary', id=p.id) }}">AI Summary</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
