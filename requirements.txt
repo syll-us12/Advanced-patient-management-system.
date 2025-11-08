@@ -1,9 +1,2 @@
-Flask
-Flask-SQLAlchemy
-Flask-Migrate
-Flask-Login
-Flask-WTF
-python-dotenv
+flask
 gunicorn
-openai
-pandas
